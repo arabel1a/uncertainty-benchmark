@@ -1,0 +1,6 @@
+[submodule "wilds"]
+	path = wilds_git
+	url = git@github.com:arabel1a/wilds.git
+[submodule "wilds_git"]
+	path = wilds_git
+	url = git@github.com:arabel1a/wilds_git.git
