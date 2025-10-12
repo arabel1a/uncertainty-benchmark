@@ -35,6 +35,8 @@ class CalibrationError(Metric):
         Returns:
             - calibration_error (Tensor): Scalar calibration error.
         """
+        y_pred = y_pred.float()
+        y_true = y_true.float()
         y_prob = torch.softmax(y_pred, dim=1)
         confidences, predictions = torch.max(y_prob, dim=1)
         correctness = (predictions == y_true).float()
@@ -49,6 +51,7 @@ class CalibrationError(Metric):
         )
 
         # Compute per-bin accuracy and average confidence
+        print(f"{correctness.dtype=}")
         bin_corr_sum = torch.zeros(self.n_bins, device=y_true.device).scatter_add_(
             0, bin_indices, correctness
         )
